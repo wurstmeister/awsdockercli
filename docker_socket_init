@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ ! -z "${SKIP_DOCKER_SOCKET_INIT}" ]]; then
+	exec "$@"
+else
+	chmod 777 /var/run/docker.sock
+	exec "$@"
+fi
