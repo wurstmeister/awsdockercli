@@ -1,8 +1,7 @@
-FROM releaseworks/awscli:latest
+FROM amazon/aws-cli
 
-RUN apk add --no-cache docker==18.09.1-r0
-RUN apk add --no-cache bash
-RUN apk add --no-cache sudo
+RUN amazon-linux-extras install docker -y
+RUN yum install -y sudo
 COPY docker_socket_init /usr/sbin/
 RUN echo "ALL ALL=(ALL) NOPASSWD: /usr/sbin/docker_socket_init" >> /etc/sudoers
 RUN chmod 700 /usr/sbin/docker_socket_init
